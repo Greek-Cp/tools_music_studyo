@@ -3,7 +3,13 @@ import os
 from datetime import datetime
 
 # Path ke manifest
-MANIFEST_FILE = r"c:\Users\denis\Documents\GitHub\studyo_music_library\assets\sounds\sound_manifest.json"
+# Default: folder sibling dari repo tools ini. Override dengan env STUDYO_MUSIC_LIBRARY.
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+LIBRARY_ROOT = os.environ.get(
+    "STUDYO_MUSIC_LIBRARY",
+    os.path.join(os.path.dirname(TOOLS_DIR), "studyo_music_library"),
+)
+MANIFEST_FILE = os.path.join(LIBRARY_ROOT, "assets", "sounds", "sound_manifest.json")
 
 def fix_manifest():
     if not os.path.exists(MANIFEST_FILE):

@@ -4,15 +4,23 @@ import json
 from datetime import datetime, timedelta
 
 # Konfigurasi
-ASSETS_DIR = r"c:\Users\denis\Documents\GitHub\studyo_music_library\assets\sounds"
-LIB_CORE_DIR = r"c:\Users\denis\Documents\GitHub\studyo_music_library\lib\core\sound_manager\core"
-MANAGER_DIR = r"c:\Users\denis\Documents\GitHub\studyo_music_library\lib\core\sound_manager\manager"
+# Root project studyo_music_library.
+# Default: folder sibling dari repo tools ini. Override dengan env STUDYO_MUSIC_LIBRARY.
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+LIBRARY_ROOT = os.environ.get(
+    "STUDYO_MUSIC_LIBRARY",
+    os.path.join(os.path.dirname(TOOLS_DIR), "studyo_music_library"),
+)
+
+ASSETS_DIR = os.path.join(LIBRARY_ROOT, "assets", "sounds")
+LIB_CORE_DIR = os.path.join(LIBRARY_ROOT, "lib", "core", "sound_manager", "core")
+MANAGER_DIR = os.path.join(LIBRARY_ROOT, "lib", "core", "sound_manager", "manager")
 ENUMS_FILE = os.path.join(LIB_CORE_DIR, "sound_enums.dart")
 PATHS_FILE = os.path.join(LIB_CORE_DIR, "sound_paths.dart")
 BGM_MANAGER_FILE = os.path.join(MANAGER_DIR, "bgm_manager.dart")
-PUBSPEC_FILE = r"c:\Users\denis\Documents\GitHub\studyo_music_library\pubspec.yaml"
+PUBSPEC_FILE = os.path.join(LIBRARY_ROOT, "pubspec.yaml")
 MANIFEST_FILE = os.path.join(ASSETS_DIR, "sound_manifest.json")
-OVERVIEW_FILE = r"c:\Users\denis\Documents\GitHub\studyo_music_library\quick_overview_used_new_assets.txt"
+OVERVIEW_FILE = os.path.join(LIBRARY_ROOT, "quick_overview_used_new_assets.txt")
 
 # Header file Dart
 HEADER = """/// GENERATED CODE - DO NOT MODIFY BY HAND

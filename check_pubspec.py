@@ -1,6 +1,12 @@
 import os
 
-PUBSPEC_FILE = r"c:\Users\denis\Documents\GitHub\studyo_music_library\pubspec.yaml"
+# Default: folder sibling dari repo tools ini. Override dengan env STUDYO_MUSIC_LIBRARY.
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+LIBRARY_ROOT = os.environ.get(
+    "STUDYO_MUSIC_LIBRARY",
+    os.path.join(os.path.dirname(TOOLS_DIR), "studyo_music_library"),
+)
+PUBSPEC_FILE = os.path.join(LIBRARY_ROOT, "pubspec.yaml")
 
 def check_specific():
     with open(PUBSPEC_FILE, 'r') as f:

@@ -3,7 +3,13 @@ import os
 from datetime import datetime, timedelta
 
 # Konfigurasi Path
-ASSETS_DIR = r"c:\Users\denis\Documents\GitHub\studyo_music_library\assets\sounds"
+# Default: folder sibling dari repo tools ini. Override dengan env STUDYO_MUSIC_LIBRARY.
+TOOLS_DIR = os.path.dirname(os.path.abspath(__file__))
+LIBRARY_ROOT = os.environ.get(
+    "STUDYO_MUSIC_LIBRARY",
+    os.path.join(os.path.dirname(TOOLS_DIR), "studyo_music_library"),
+)
+ASSETS_DIR = os.path.join(LIBRARY_ROOT, "assets", "sounds")
 MANIFEST_FILE = os.path.join(ASSETS_DIR, "sound_manifest.json")
 
 def smart_fix_manifest():
